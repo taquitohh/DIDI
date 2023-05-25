@@ -1,14 +1,15 @@
 ---
 export interface Props {
-	title: string;
+    active: string;
+    title: string;
 }
 
-const { title } = Astro.props;
+const { active, title } = Astro.props;
 ---
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    </style>
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -29,13 +30,13 @@ const { title } = Astro.props;
 		<nav>
             
             <ul class="nav___links">
-				<li><a href="/"><img class="logoM" src="/logo.png" alt="logo" > </a></li>
-			    <li><a href="/declarare&parcurgere"><b>Declararea și parcurgerea </b></a></li>
-				<li><a href="/stergere&inserare"><b>Ștergeri și inserări</b></a></li>
-				<li><a href="/Verificare"><b>Verificarea unor proprietăți</b></a></li>
-				<li><a href="/sortare"><b>Sortarea</b></a></li>
-				<li><a href="/interclasare"><b>Interclasarea</b></a></li>
-				<li><a href="/secvente"><b>Secvențe în vectori</b></a></li>
+				<li ><a href="/"><img class="logoM" src="/logo.png" alt="logo" > </a></li>
+			    <li><a href="/declarare&parcurgere"><b  class:list={{active:active=="A"}}>Declararea și parcurgerea </b></a></li>
+				<li ><a href="/stergere&inserare"><b class:list={{active:active=="B"}}>Ștergeri și inserări</b></a></li>
+				<li ><a href="/Verificare"><b class:list={{active:active=="C"}}>Verificarea unor proprietăți</b></a></li>
+				<li ><a href="/sortare"><b class:list={{active:active=="D"}}>Sortarea</b></a></li>
+				<li ><a href="/interclasare"><b class:list={{active:active=="E"}}>Interclasarea</b></a></li>
+				<li ><a href="/secvente"><b class:list={{active:active=="F"}}>Secvențe în vectori</b></a></li>
 			</ul>
 		</nav>
         <slot>
@@ -48,6 +49,9 @@ const { title } = Astro.props;
     @font-face {
     font-family: Scout;
     src: url(/fonts/ScoutCond-BoldItalic.otf);
+    }
+    .active{
+        color:#ff83b3d0;
     }
     .prop {
         padding:30px;
