@@ -1,0 +1,145 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    </style>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" class="icon" type="image/svg+xml" href="/logo.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+		<meta name="generator" content={Astro.generator} />
+		<title>Rainbow six siege</title>
+	</head>
+	<body>
+		<nav>
+            
+            <ul class="nav___links">
+				<li><a href="/"><img class="logoM" src="/logo.png" alt="logo" > </a></li>
+			    <li><a href="/declarare&parcurgere"><b>Declararea și parcurgerea </b></a></li>
+				<li><a href="/stergere&inserare"><b>Ștergeri și inserări</b></a></li>
+				<li><a href="/Verificare"><b>Verificarea unor proprietăți</b></a></li>
+				<li><a href="/sortare"><b>Sortarea</b></a></li>
+				<li><a href="/interclasare"><b>Interclasarea</b></a></li>
+				<li><a href="/secvente"><b>Secvențe în vectori</b></a></li>
+			</ul>
+		</nav>
+        <slot>
+        </slot>
+	</body>
+</html>
+
+<style is:global>
+
+    @font-face {
+    font-family: Scout;
+    src: url(/fonts/ScoutCond-BoldItalic.otf);
+    }
+    .prop {
+        padding:30px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #24252A;
+        color: white;
+        text-align: center;
+}
+	:root {
+		--accent: 199, 80, 120;
+		--accent-gradient: linear-gradient(15deg, rgb(var(--accent)), #ffadcc 50%, #b384ff 50%);
+	}
+	html {
+		font-family: Scout, sans-serif;
+		background-color: #1f1e22;
+	}
+    
+	* {  
+       box-sizing: border-box;
+       margin:0;
+	   padding: 0;
+	   height: auto;
+    }
+
+  li, a, button {
+	   font-family: Scout, monospace;
+       font-weight: 500;
+       font-size: 17px;
+       color: #edf0f1;
+       text-decoration: none;
+  }
+   ul{
+	    display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+   }
+  nav {
+      position: fixed;
+      display: flex;
+      justify-content: center;
+	  align-items: center;
+	  padding: 5px 5%;
+      height: 66px;
+      background-color: #24252A;
+      letter-spacing: 0.5px;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+  }
+
+  .logoM  {
+	width: 40px;
+    left: 5%;
+	filter:invert(100%);
+  }
+
+  .logo {
+      cursor: pointer;
+  }
+
+  .nav___links {
+      list-style: none;
+  }
+
+  .nav___links li{   
+	  display: inline-block;
+      padding: 0px 30px;
+  }
+
+  .nav___links li a {
+      transition: all 0.3s ease 0;
+  }
+
+  .nav___links li a:hover {
+      color:#ff83b3d0;
+  }
+
+  button {
+      padding: 10px 25px;
+      background-color: rgb(61, 66, 99);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ;
+  }
+  button:hover{ 
+      background-color:rgb(179, 179, 212);
+      color:#1f1e22;
+  }
+
+
+</style>

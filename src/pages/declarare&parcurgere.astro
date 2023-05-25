@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Declararea și parcurgerea">
+	<main>
+		<h1><span class="text-gradient">Declararea și parcurgerea tablourilor unidimensionale</span></h1>
+		<p class="instructions">
+			Un tablou unidimensional se declară în C++ astfel:<code>int X[10];</code><br />
+            Ne putem imagina tabloul declarat mai sus astfel (valorile elementelor sunt aleatorii):<br /><br />
+            <img class="imagine" src="tablouri-unidimensionale-1.png"><br /><br />
+            Spunem că fiecare element are un indice. Indicii unui tablou sunt între 0 și Dimensiune-1, deci în exemplul nostru între 0 și 9.<br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Observație:</strong> Nu este necesar la declarare tabloul să fie singura variabilă declarată în instrucțiunea declarativă.<br />Următoarea instrucțiune este corectă sintactic.<code>int n, X[10], m, Y[100], p;</code><br /><br />
+		    Care sunt valorile inițiale ale elementelor tabloului? Regula este aceeași ca pentru alte variabile:<br /><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- elementele unui tablou declarat global (în afara oricărei funcții) sunt inițializate cu 0;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- elementele unui tablou declarat local (în interiorul unei funcții) sunt inițializate cu valori aleatorii. <br /><br />
+            &nbsp;&nbsp;&nbsp;<strong>Dimensiunea unui tablou unidimensional</strong><br /><br />
+            La declararea unui tablou unidimensional se precizează o dimensiune pentru acesta. Aceasta reprezintă o dimensiune fizică a tabloului – numărul maxim de elemente pe care le-ar putea avea acesta, conform restricțiilor problemei.<br /><br />
+            De cele mai multe ori, în program nu se folosesc toate elementele tabloului. De regulă, enunțul unei probleme cu tablouri este:<br /><br />
+            <i>“Se citește un vector cu <code>n</code> elemente, numere …. Să se …..”</i><br /><br />
+            Este deci necesar ca în program să avem o variabilă – de regulă se notează <code>n</code>, care să reprezinte dimensiunea logică a tabloului – numărul de elemente ale tabloului care la un moment dat sunt utilizate în program.<br /><br />
+            &nbsp;&nbsp;&nbsp;<strong>Parcurgerea unui tablou unidimensional</strong><br /><br />
+            Parcurgerea unui tablou reprezintă referirea fiecărui element al tabloului, într-o anumită ordine. Referirea elementului se face prin intermediul indicelui, cu ajutorul operatorului de indexare.<br /><br />
+            Următorul exemplu declară un tablou cu <code>100</code> de elemente și memorează în primele <code>n</code> elemente ale tabloului valoarea <code>1</code>. După cum știm deja, <code>n</code> trebuie să respecte relația <code>n &lt;= 100 </code>. În caz contrar, comportamentul programului devine impredictibil – foarte probabil execuția sa va fi oprită de sistemul de operare.<br /><br />
+           <code >int X[100], n; <br />
+            &nbsp;//n = .... ;<br />
+            &nbsp;for(int i = 0 ; i &lt; n ; i ++)<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;  X[i] = 1;</code>
+        
+            
+        </p>
+		<ul role="list" class="link-card-grid">
+			
+		</ul>
+	</main>
+</Layout>
+
+<style>
+    p{
+        color:aliceblue;
+    }
+	main {
+		margin: 100px;
+		padding: 1.5rem;
+		width: 70%;
+	}
+    body{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+	h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+		font-size: 2.5rem;
+		font-weight: 800;
+		margin: 40px;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+        
+	}
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: rgba(82, 78, 80, 0.377);
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+	.instructions code {
+		font-size: 1.2em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent));
+        font-size: 1.6em;
+	}
+</style>
