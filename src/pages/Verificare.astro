@@ -6,7 +6,76 @@ import Layout from '../layouts/Layout.astro';
 	<main>
 		<h1><span class="text-gradient">Verificarea unor proprietăți</span></h1>
 		<p class="instructions">
-			
+			Se pot formula foarte multe probleme în care se cere să se verifice dacă elementele unui vector respectă diverse proprietăți, dar toate se pot reduce în cele din urmă la una dintre următoarele:<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-să se verifice dacă toate elementele unui vector dat respectă o anumită regulă;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-să se verifice dacă într-un vector dat există elemente care respectă o anumită regulă.<br /><br />
+			O rezolvare ar putea fi să numărăm elementele care respectă regula. La final:<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă numărul de elemente care respectă regula este egal cu numărul totale de elemente din vector, atunci toate elementele respectă regula<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă numărul de elemente care respectă regula este nenul, atunci există elemente care respectă regula.<br /><br />
+			Altă rezolvare, mai bună, ne permite să oprim parcurgerea când suntem siguri că vectorul respectă sau nu proprietatea dorită. Vom folosi o variabilă booleană (cu valori <code>true</code> sau <code>false</code>, <code>1</code> sau <code>0</code>, …):<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă la final variabila are valoarea <code>true</code>, atunci vectorul respectă regula,<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă la final variabila are valoare <code>false</code>, atunci vectorul nu respectă regula.<br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Toate elementele respectă regula</strong><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-inițializăm variabila cu <code>true</code><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-parcurgem vectorul<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă elementul curent nu respectă regula dorită<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-variabila devine <code>false</code><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-parcurgerea vectorului poate opri<br /><br />
+			Secvențe C++:<br /><br />
+			<code >bool OK = true;<br />
+			&nbsp;for(int i = 0 ; i &lt; n && OK ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;if(X[i] - nu respectă regula)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK = false;</code> <br /><br />
+            sau <br /><br />
+			<code >bool OK = true;<br />
+			&nbsp;for(int i = 0 ; i &lt; n ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;if(X[i] - nu respectă regula)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK = false;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#125;</code> <br /><br />
+			sau <br /><br />
+			<code >bool OK = true;<br />
+			int i = 0;<br />
+			&nbsp;while(i &lt; n && OK)<br />
+			&nbsp;&nbsp;&#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;if(X[i] - nu respectă regula)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OK = false;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i ++;<br />
+			&nbsp;&nbsp;&#125;</code> <br /><br />
+
+			&nbsp;&nbsp;&nbsp;<strong>Există elemente care respectă regula</strong><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-inițializăm variabila cu <code>false</code><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-parcurgem vectorul<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă elementul curent respectă regula dorită<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-variabila devine <code>true</code><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-parcurgerea vectorului poate opri<br /><br />
+			Secvențe C++:<br /><br />
+			<code >bool OK = false;<br />
+			&nbsp;for(int i = 0 ; i &lt; n && OK ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;if(X[i] - respectă regula)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK = true;</code> <br /><br />
+            sau <br /><br />
+			<code >bool OK = false;<br />
+			&nbsp;for(int i = 0 ; i &lt; n ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;if(X[i] - respectă regula)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK = true;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&#125;</code> <br /><br />
+			sau <br /><br />
+			<code >bool OK = false;<br />
+			int i = 0;<br />
+			&nbsp;while(i &lt; n && OK)<br />
+			&nbsp;&nbsp;&#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;if(X[i] - respectă regula)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OK = true;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i ++;<br />
+			&nbsp;&nbsp;&#125;</code> <br /><br />
+
+
         </p>
 		<ul role="list" class="link-card-grid">
 			
@@ -15,8 +84,10 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+	p{
+        color:aliceblue;
+    }
 	main {
-        
 		margin: 100px;
 		padding: 1.5rem;
 		width: 70%;
@@ -33,7 +104,7 @@ import Layout from '../layouts/Layout.astro';
         flex-direction: column;
         align-items: center;
         justify-content: center;
-		font-size: 1.5rem;
+		font-size: 2.5rem;
 		font-weight: 800;
 		margin: 40px;
 	}
@@ -54,7 +125,7 @@ import Layout from '../layouts/Layout.astro';
 		border-radius: 0.4rem;
 	}
 	.instructions code {
-		font-size: 0.875em;
+		font-size: 1.2em;
 		font-weight: bold;
 		background: rgba(var(--accent), 12%);
 		color: rgb(var(--accent));
@@ -63,5 +134,6 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.instructions strong {
 		color: rgb(var(--accent));
+        font-size: 1.6em;
 	}
 </style>

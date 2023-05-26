@@ -22,13 +22,51 @@ import Layout from '../layouts/Layout.astro';
             &nbsp;&nbsp;&nbsp;<strong>Parcurgerea unui tablou unidimensional</strong><br /><br />
             Parcurgerea unui tablou reprezintă referirea fiecărui element al tabloului, într-o anumită ordine. Referirea elementului se face prin intermediul indicelui, cu ajutorul operatorului de indexare.<br /><br />
             Următorul exemplu declară un tablou cu <code>100</code> de elemente și memorează în primele <code>n</code> elemente ale tabloului valoarea <code>1</code>. După cum știm deja, <code>n</code> trebuie să respecte relația <code>n &lt;= 100 </code>. În caz contrar, comportamentul programului devine impredictibil – foarte probabil execuția sa va fi oprită de sistemul de operare.<br /><br />
-           <code >int X[100], n; <br />
+            <code >int X[100], n; <br />
             &nbsp;//n = .... ;<br />
             &nbsp;for(int i = 0 ; i &lt; n ; i ++)<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;  X[i] = 1;</code>
-        
+            &nbsp;&nbsp;&nbsp;&nbsp;  X[i] = 1;</code><br /><br />
+			De regulă, parcurgerea tabloului se face în ordinea crescătoare a indicelor, de la <code>0</code> la <code>n-1</code>. Făcând o analogie cu axa numerelor, putem spune că parcurgerea se face de la stânga spre dreapta. Tabloul poate fi parcurs și de la dreapta la stânga, adică în ordinea descrescătoare a indicilor, de la <code>n-1</code> la <code>0 </code>:<br />
+			<code >&nbsp;for(int i = n - 1 ; i &gt;= 0 ; i --)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X[i] = 1;</code><br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Citirea unui vector</strong><br /><br />
+			<code>int X[100], n;</code><br /><br />
+			De fapt, în cele mai multe cazuri nu se poate face citirea unui tablou unidimensional (vector), adică <code> cin &gt;&gt; X; </code><br />
+			Instrucțiunea de mai sus duce de regulă la eroare de sintaxă. În schimb, se pot citi elementele tabloului, în ordine, cu ajutorul parcurgerii:<br /><br />
+			<code >cin &gt;&gt; n;<br />
+			&nbsp;for(int i = 0 ; i &lt; n ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;cin &gt;&gt; X[i]; </code><br /><br />
+
+			&nbsp;&nbsp;&nbsp;<strong>Afișarea unui vector</strong><br /><br />
+			<code>int X[100], n;</code><br /><br />
+			La fel ca în cazul citirii, în cele mai multe cazuri nu se poate face nici afișarea unui vector, adică <code> cout &lt;&lt;  X; </code><br />
+			Spre deosebire de citire, afișarea unui tablou cu ajutorul operatorului de inserție <code> &lt;&lt; </code> nu duce la eroare de sintaxă, însă nu se vor afișa elementele tabloului, ci o adresă (de exemplu <code> 0x7ffc9711bcd0 </code>), reprezentând adresa primului element al tabloului. Elementele tabloului se pot afișa prin parcurgere, în ordinea dorită:<br /><br />
+			<code >&nbsp;for(int i = 0 ; i &lt; n ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; X[i] &lt;&lt;' ';</code><br /><br />
+            sau<br /><br />
+			<code >for(int i = n - 1 ; i &gt;= 0 ; i --)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; X[i] &lt;&lt;' ';</code><br /><br />
             
-        </p>
+			&nbsp;&nbsp;&nbsp;<strong>Indexare de la 0 și indexare de la 1</strong><br /><br />
+            Orice tablou C++ are fizic elementele indexate de la <code>0</code> la <code>Dimensiune-1</code>. De exemplu, dacă avem nevoie de un tablou cu <code>n≤100</code> elemente întregi, îl vom declara:<br /> <code>int V[100];</code> <br />
+            iar elementele vor avea indici între <code>0</code> și <code>99</code>. Astfel, primul element al tabloului este <code>V[0]</code>, al doilea este <code>V[1]</code>, …, ultimul este <code>V[n-1]</code>.<br />
+			Dacă dorim, putem ignora elementul <code>V[0]</code> (pur și simplu nu îl folosim, el există însă în continuare), și atunci toate operațiile (citire, afișare, parcurgere) vor utiliza elementele <code>V[1]</code> (primul element), <code>V[2]</code> (al doilea element), …, <code>V[n]</code> (ultimul element). <br />
+			Trebuie de asemenea să tratăm cu atenție declararea tabloului, dimensiunea fizică trebuind să fie mai mare cu <code>1</code> decât valoarea precizată în problemă. Dacă de exemplu, <code>n≤100</code>, declararea va fi: <code>int V[101];</code><br />
+            Acest lucru este necesar pentru a exista elementul <code>V[100]</code>.<br /><br />
+		
+			&nbsp;&nbsp;&nbsp;<strong>Inițializarea elementelor unui tablou</strong><br /><br />
+			La declararea tabloului este posibil să inițializăm elementele sale:<br />
+			<code>int A[] = &#123;10 , 20 , 30 , 40 &#125;;<br />
+			int B[10] = &#123;10 , 20 , 30 , 40 &#125;;<br />
+			int C[10] = &#123;0&#125;;</code> <br /><br />
+			<code>A</code> va avea patru elemente, cu valorile <code>A[0] = 10</code>,<code>A[1] = 20</code>,<code>A[2] = 30</code>,<code>A[3] = 40</code> .<br />
+            <code>B</code> va avea zece elemente; primele patru vor avea valorile <code>B[0] = 10</code>,<code>B[1] = 20</code>,<code>B[2] = 30</code>,<code>B[3] = 40</code> celelalte vor avea valoarea <code>0</code>!!!<br />
+            <code>C</code> va avea zece elemente. Toate vor avea valoarea <code>0</code>!!!<br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Atenție!!</strong><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-În declarația int <code>A[10]=&#123;1&#125;;</code>, numai <code>A[0]</code> primește valoarea <code>1</code>, celelalte elemente fiind egale cu <code>0</code>!!<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Tablourile pot fi inițializate în acest mod numai la declarare. Următoarea secvență este greșită sintactic:<br /><br /><code>int A[10]; <br />&nbsp; A = &#123;0&#125;;</code><br /><br />
+		
+		</p>
 		<ul role="list" class="link-card-grid">
 			
 		</ul>

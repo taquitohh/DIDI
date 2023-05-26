@@ -6,8 +6,24 @@ import Layout from '../layouts/Layout.astro';
 	<main>
 		<h1><span class="text-gradient">Sortarea tablourilor</span></h1>
 		<p class="instructions">
-			
-        </p>
+			Sortarea unui tablou reprezintă o rearanjare a elementelor astfel încât valorile acestora să fie într-o anumită ordine. De regulă ordinea cerută este cea crescătoare sau descrescătoare.<br /><br />
+			Din punct de vedere al eficienței, avem:<br /><br />
+			algoritmi neeficienți, de complexitate <strong>O(n2)</strong>:<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-metoda bulelor<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-sortarea prin selecție (interschimbare)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-sortarea prin inserție<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-metoda piticului<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-etc.<br /><br />
+			algoritmi eficienți, de complexitate <strong>O(n⋅logn)</strong>:<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-QuickSort<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-MergeSort<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-HeapSort<br />
+		    Pentru structuri de date particulare există și algoritmi de complexitate <strong>O(n2)</strong>. De asemenea, există algoritmi exponențiali, de complexitate <strong>O(n!)</strong>, fără utilitate practică.<br /><br />
+			<strong>Citește mai departe :</strong><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="sortare"><strong class="sort">Metota bulelor</strong></a><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="sortare"><strong class="sort">Sortarea prin selectie</strong></a><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="sortare"><strong class="sort">Sortarea prin insertie</strong></a><br />
+		</p>
 		<ul role="list" class="link-card-grid">
 			
 		</ul>
@@ -15,8 +31,10 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+	p{
+        color:aliceblue;
+    }
 	main {
-        
 		margin: 100px;
 		padding: 1.5rem;
 		width: 70%;
@@ -33,7 +51,7 @@ import Layout from '../layouts/Layout.astro';
         flex-direction: column;
         align-items: center;
         justify-content: center;
-		font-size: 1.5rem;
+		font-size: 2.5rem;
 		font-weight: 800;
 		margin: 40px;
 	}
@@ -54,7 +72,7 @@ import Layout from '../layouts/Layout.astro';
 		border-radius: 0.4rem;
 	}
 	.instructions code {
-		font-size: 0.875em;
+		font-size: 1.2em;
 		font-weight: bold;
 		background: rgba(var(--accent), 12%);
 		color: rgb(var(--accent));
@@ -63,5 +81,11 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.instructions strong {
 		color: rgb(var(--accent));
+	}
+
+	.sort:hover{
+		font-size: 1.2;
+		color:rgb(253, 213, 239);
+		cursor:pointer;
 	}
 </style>

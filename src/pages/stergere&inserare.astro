@@ -6,8 +6,66 @@ import Layout from '../layouts/Layout.astro';
 	<main>
 		<h1><span class="text-gradient">Ștergeri și inserări de elemente</span></h1>
 		<p class="instructions">
-			
-        </p>
+			Operațiile de ștergere a unui element dintr-un vector, sau de inserare a unui element nou într-un vector sunt frecvente în practică: avem o listă cu elevii dintr-o clasă și un elev pleacă, sau un alt elev vine. Cum actualizăm lista?<br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Ștergerea</strong><br /><br />
+			Să considerăm următoarea problemă :<br /><br />
+			<strong> !! </strong>Se dă un șir <code>x</code> cu <code>n</code> elemente întregi și un număr <code>p</code>. Să se șteargă din șirul <code>x</code> elementul aflat pe poziția <code>p</code>.<br /><br />
+		    Să considerăm următorul vector cu <code>n=10</code> elemente și <code>p=4</code>.<br /><br />
+			<img class="imagine" src="stergere1.png"><br /><br />
+			Dorim să eliminăm din vector elementul de indice <code>4</code>, cel cu valoarea <code>X[4] = 34</code>. <br /><br />
+			Cum procedăm?<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-elementele cu indici <code>p+1</code>,<code>p+2</code>,...,<code>n-1</code> se mută spre stânga cu o poziție<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dimensiunea n a tabloului se micșorează cu <code>1</code><br /><br />
+			<img class="imagine" src="stergere3.gif"><br /><br />
+			Ștergerea se face astfel:<br /><br />
+			<code >&nbsp;for(int i = p ; i &lt; n - 1; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;X[i] = X[i+1];<br />
+			&nbsp;n --;</code> <br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Ștergerea mai multor valori din șir</strong><br /><br />
+			Considerăm următoarea problemă :<br /><br />
+			Considerăm un șir <code>x</code> cu <code>n</code> elemente întregi. Să se elimine din șir toate elementele pare.<br /><br />
+		    Rezolvare:<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-parcurgem șirul și analizăm elementul curent <code>X[p]</code>;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă elementul <code>X[p]</code> este par, aplicăm algoritmul de mai sus pentru ștergerea elementului cu indicele <code>p</code>.<br />
+			Este necesar să realizăm cu atenție parcurgerea. Următoarea secvență:<br />
+			<code >&nbsp;for (int p = 0 ; p &lt; n ; p ++)<br />
+			&nbsp;&nbsp;&nbsp;if(X[p] % 2 == 0) &#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int i = p ; i &lt; n - 1; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X[i] = X[i+1];<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n --;<br />
+			&nbsp;&nbsp;&nbsp;	&#125;</code> <br /><br />
+			nu funcționează corect dacă în șir sunt elemente consecutive cu proprietatea dorită (de a fi pare), deoarece al doilea element par nu va fi analizat, deci nu va fi eliminat din șir. O soluție bună este să parcurgem elementele în ordine inversă:<br /><br />
+			<code >&nbsp;for (int p = n - 1 ; p &gt;= n ; p --)<br />
+			&nbsp;&nbsp;&nbsp;if(X[p] % 2 == 0) &#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int i = p ; i &lt; n - 1; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X[i] = X[i+1];<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n --;<br />
+			&nbsp;&nbsp;&nbsp;	&#125;</code> <br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Adăugarea unui element într-un vector</strong><br /><br />
+			Adăugarea unui element într-un vector înseamnă mărirea dimensiunii logice <code>n</code> a vectorului și memorarea în ultimul element a noii valori. Următoarele secvențe adaugă o valoare într-un vector indexat de la <code>0</code>.<br /><br />
+            <code>X[n] = val;<br />
+			n ++;</code><br /><br />
+			sau, mai condensat:<br /><br />
+			<code>X[n++] = val;</code><br /><br />
+			Următoarele secvențe adaugă o valoare într-un vector indexat de la <code>1</code>.<br /><br />
+			<code>n ++;<br />
+			X[n] = val;</code><br /><br />
+			sau, mai condensat:<br /><br />
+			<code>X[++n] = val;</code><br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Inserarea unui element într-un vector</strong><br /><br />
+			Considerăm următoarea problemă :<br /><br />
+			Se dă un șir <code>x</code> cu <code>n</code> elemente întregi, o valoare întreagă <code>val</code> și un număr <code>p</code>. Să se insereze pe poziția <code>p</code> în șir valoarea <code>val</code>.<br /><br />
+            Similar cu algoritmul de ștergere a unui element dintr-un vector, și cel de inserare presupune modificarea elementelor din dreapta lui <code>X[p]</code>. De data aceasta elementele vor fi mutate spre dreapta, începând cu ultimul. Elementul <code>X[p]</code> se înlocuiește cu noua valoare, iar dimensiunea logică a vectorului crește, fără a depăși însă dimensiunea fizică.<br /><br />
+			<img class="imagine" src="stergere 4.gif"><br /><br />
+			&nbsp;&nbsp;&nbsp;<strong>Inserarea mai multor valori în șir</strong><br /><br />
+			Se dă un vector cu <code>n</code> elemente naturale. Să se insereze după fiecare element par, jumătatea sa.<br /><br />
+			Principial, procedăm astfel:<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-parcurgem șirul<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-dacă elementul curent <code>X[p]</code> este par<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-inserăm pe poziția <code>p+1</code> valoarea <code>X[p]/2</code><br />
+			Dacă parcurgerea se face de la stânga spre dreapta, există riscul unor inserări suplimentare, ca în acest exemplu:<br /><br />
+			<img class="imagine" src="stergere5.gif"><br /><br />
+		</p>
 		<ul role="list" class="link-card-grid">
 			
 		</ul>
@@ -15,8 +73,10 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+	p{
+        color:aliceblue;
+    }
 	main {
-        
 		margin: 100px;
 		padding: 1.5rem;
 		width: 70%;
@@ -33,7 +93,7 @@ import Layout from '../layouts/Layout.astro';
         flex-direction: column;
         align-items: center;
         justify-content: center;
-		font-size: 1.5rem;
+		font-size: 2.5rem;
 		font-weight: 800;
 		margin: 40px;
 	}
@@ -54,7 +114,7 @@ import Layout from '../layouts/Layout.astro';
 		border-radius: 0.4rem;
 	}
 	.instructions code {
-		font-size: 0.875em;
+		font-size: 1.2em;
 		font-weight: bold;
 		background: rgba(var(--accent), 12%);
 		color: rgb(var(--accent));
@@ -63,5 +123,6 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.instructions strong {
 		color: rgb(var(--accent));
+        font-size: 1.6em;
 	}
 </style>
