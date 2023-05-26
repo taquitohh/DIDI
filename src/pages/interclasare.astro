@@ -6,11 +6,40 @@ import Layout from '../layouts/Layout.astro';
 	<main>
 		<h1><span class="text-gradient">Interclasarea tablourilor</span></h1>
 		<p class="instructions">
-			Considerăm două tablouri unidimensionale cu elemente numere întregi ordonate crescător. Se dorește construirea unui alt tablou, care să conțină valorile din cele două tablouri, în ordine.<br /><br />
+		    	Considerăm două tablouri unidimensionale cu elemente numere întregi ordonate crescător. Se dorește construirea unui alt tablou, care să conțină valorile din cele două tablouri, în ordine.<br /><br />
 			O soluție foarte eficientă este interclasarea:<br /><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-considerăm două tablouri, cu n, respectiv m elemente, ordonate crescător<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-considerăm două tablouri, cu <code>n</code>, respectiv <code>m</code> elemente, ordonate crescător<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-cele două tablouri se parcurg concomitent;<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se alege valoarea mai mică dintre cele două elemente curente<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se adaugă în al treilea tablou<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-se avansează numai în tabloul din care am ales valoarea de adăugat<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;-parcurgerea unuia dintre cele două tablouri se încheie<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;-toate elementele din celălalt tablou, neparcurse încă, sunt adăugate în tabloul destinație<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;-tabloul destinație are <code>p = n + m</code> elemente<br /><br />
+			<img class="imagine" src="interclasare1.gif"><br /><br />
+			Secvență C++ &nbsp;&nbsp;-&nbsp;&nbsp; tablourile <code>a[]</code> și <code>b[]</code> sunt indexate de la <code>0</code>:<br /><br />
+			<code>int n,a[100000], m , b[100000], p, c[200000];<br />
+				&nbsp;&nbsp;//citire a[] cu n elemente, indexate de la 0<br />
+				&nbsp;&nbsp;//citire b[] cu m elemente, indexate de la 0<br />
+				&nbsp;int i = 0 , j = 0;<br />
+				&nbsp;p = 0;<br />
+				&nbsp;while(i &gt; n && j &gt; m)<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;if(a[i] &gt; b[j])<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c[p ++] = a[i ++];<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c[p ++] = b[j ++];<br />
+				&nbsp;while(i &gt; n)<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;c[p ++] = a[i ++];<br />
+				&nbsp;while(j &gt; m)<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;c[p ++] = b[j ++];</code><br /><br />
+				&nbsp;&nbsp;&nbsp;<strong>Observație:</strong> Doar una dintre instrucțiunile <code>while(i &gt; n)...</code> și <code>while(j &gt; m)...</code> se va executa, deoarece exact una dintre condițiile <code>i &gt; n</code> și <code>j &gt; m</code> este adevărată. În prima structură repetitivă, la fiecare pas, doar una dintre variabilele <code>i</code> și <code>j</code> se mărește, deci la final una dintre condiții este adevărată și una este falsă.<br />
+				Algoritmul de interclasare este <code>foarte eficient</code>. El are complexitate <code>O(n+m)</code>. De asemenea, este posibilă și interclasarea valorilor din două fișiere, singura condiție este ca valorile să fie ordonate.
+				
+
+
+
+
+
 
 
         </p>
