@@ -2,16 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout active="E" title="Interclasarea">
+<Layout active="D" title="Metoda bulelor">
 	<main>
 		<h1><span class="text-gradient">Metoda bulelor</span></h1>
-		<p class="instructions">
+		<div class="instructions">
 			Cunoscută și sub numele <i>BubbleSort</i>, metoda bulelor se bazează pe următoare idee:<br /><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- fie un vector X[] cu n elemente<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- fie un vector <code>X[]</code> cu <code>n</code>  elemente<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- parcurgem vectorul și pentru oricare două elemente învecinate care nu sunt în ordinea dorită, le interschimbăm valorile<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- după o singură parcurgere, vectorul nu se va sorta, dar putem repeta parcurgerea<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- dacă la o parcurgere nu se face nicio interschimbare, vectorul este sortat<br /><br />
-
 			O reprezentare a algoritmului este:<br /><br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- cat timp vectorul nu este sortat<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- presupunem că vectorul este sortat<br />
@@ -19,25 +18,81 @@ import Layout from '../layouts/Layout.astro';
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- dacă două elemente învecinate nu sunt în ordinea dorită<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- le interschimbăm<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- schimbăm presupunerea inițială<br /><br />
-			<strong>Exemplu:</strong> Să ordonăm următorul vector, în care n=5:<br /><br />
+			<strong>Exemplu:</strong> Să ordonăm următorul vector, în care <code>n=5</code>:<br /><br />
 			<img class="imagine" src="mb1.png"><br /><br />
-			După prima parcurgere vectorul are următoarea structură:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; După o nouă parcurgere, vectorul este:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Îl parcurgem din nou:<br />
-			<img class="imagine" src="mb2.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<img class="imagine" src="mb3.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<img class="imagine" src="mb4.png"><br />
-			Deoarece am făcut interschimbări,  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Și acum am făcut interschimbări, nu știm dacă  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deoarece nu am făcut nicio interschimbare,<br />
-			nu știm dacă vectorul este ordonat.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	vectorul este ordonat (chiar dacă el este).   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decidem că vectorul este ordonat.<br /><br />
-        
-		
-			</p>
-		<ul role="list" class="link-card-grid">
+			<div class="img">
+			<div class="ex">După prima parcurgere vectorul are următoarea structură: <img class="imagine" src="mb2.png">Deoarece am făcut interschimbări, nu știm dacă vectorul este ordonat.</div>
+			<div class="ex">După o nouă parcurgere, vectorul este: <img class="imagine" src="mb3.png">Și acum am făcut interschimbări, nu știm dacă vectorul este ordonat (chiar dacă el este).</div>
+			<div class="ex">Îl parcurgem din nou: <img class="imagine" src="mb4.png">Deoarece nu am făcut nicio interschimbare, decidem că vectorul este ordonat.</div>
+			</div><br /><br />
+			O secvență C++:<br /><br />
+			<code>int n, v[100];<br />
+			//citire v[] cu n elemente<br />
+			bool sortat;<br />
+			do<br />
+			&#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp; sortat = true;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0 ; i &#60; n - 1 ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(v[i] &#62; v[i+1])<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int aux = v[i];<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v[i] = v[i+1];<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v[i+1] = aux;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sortat = false;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#125;<br />
+			&#125;<br />
+			while(!sortat);</code><br /><br />
+			<strong>Observație:</strong> La fiecare parcurgere cel puțin un element ajunge pe poziția sa finală:<br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- la prima parcurgere cel mai mare element al vectorului ajunge pe poziția sa finală;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- la a doua parcurgere următorul cel mai mare element ajunge pe poziția finală;<br /><br />
+			Observăm că nu mai are rost să parcurgem aceste elemente, fixate. Astfel, putem parcurge vectorul numai până la indicele unde s-a făcut ultima interschimbare la parcurgerea anterioară.<br /><br />
+			<strong>Exemplu:</strong> <br />
+			<div class="img">
+			<div class="ex">Parcurgere 1 <img class="imagine" src="mb5.png"></div>
+			<div class="ex">Parcurgere 2 <img class="imagine" src="mb6.png"></div>
+			<div class="ex">Parcurgere 3 <img class="imagine" src="mb7.png"></div>
+			</div><br /><br />
+			O secvență C++:<br /><br />
+			<code>int n, v[100];<br />
+			//citire v[] cu n elemente<br />
+			bool sortat;<br />
+			int m = n;<br />
+			do<br />
+			&#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;sortat = true;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;int p = m;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;for(int i = 0 ; i &#60; p - 1 ; i ++)<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(v[i] &#62; v[i+1])<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#123;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int aux = v[i];<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v[i] = v[i+1];<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v[i+1] = aux;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sortat = false;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m = i + 1;<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#125;<br />
+			&#125;<br />
+			&nbsp;while(!sortat);</code> <br /><br />
+
+
 			
-		</ul>
 	</main>
 </Layout>
 
 <style>
-	p{
+	.ex{
+		display: flex;
+		flex-direction: column;
+		padding: 50px;
+	}
+	.img{
+		display: flex;
+		align-items: flex-start;
+		width: 100%;
+		height:fit-content;
+		
+	}
+	
+	div{
         color:aliceblue;
     }
 	main {
